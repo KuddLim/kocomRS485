@@ -45,44 +45,44 @@ KOCOM_ROOM_THERMOSTAT       = {'00': 'livingroom', '01': 'bedroom', '02': 'room1
 SCAN_INTERVAL = 300         # 월패드의 상태값 조회 간격
 SCANNING_INTERVAL = 0.8     # 상태값 조회 시 패킷전송 간격
 ####################### Start Here by Zooil ###########################
-option_file = '/data/options.json'                                                                                             
-if os.path.isfile(option_file):                                                                                                
-    with open(option_file) as json_file:                                                                                   
-        json_data = json.load(json_file)                                                                               
-        INIT_TEMP = json_data['Advanced']['INIT_TEMP']                                                                 
-        SCAN_INTERVAL = json_data['Advanced']['SCAN_INTERVAL']                                                         
-        SCANNING_INTERVAL = json_data['Advanced']['SCANNING_INTERVAL'] 
-        DEFAULT_SPEED = json_data['Advanced']['DEFAULT_SPEED'] 
+option_file = '/data/options.json'
+if os.path.isfile(option_file):
+    with open(option_file) as json_file:
+        json_data = json.load(json_file)
+        INIT_TEMP = json_data['Advanced']['INIT_TEMP']
+        SCAN_INTERVAL = json_data['Advanced']['SCAN_INTERVAL']
+        SCANNING_INTERVAL = json_data['Advanced']['SCANNING_INTERVAL']
+        DEFAULT_SPEED = json_data['Advanced']['DEFAULT_SPEED']
         CONF_LOGLEVEL = json_data['Advanced']['LOGLEVEL']
-        KOCOM_LIGHT_SIZE = {} 
-        dict_data = json_data['KOCOM_LIGHT_SIZE']                                                               
+        KOCOM_LIGHT_SIZE = {}
+        dict_data = json_data['KOCOM_LIGHT_SIZE']
         for i in dict_data:
-            KOCOM_LIGHT_SIZE[i['name']] = i['number'] 
-        KOCOM_PLUG_SIZE = {} 
-        dict_data = json_data['KOCOM_PLUG_SIZE']                                                               
+            KOCOM_LIGHT_SIZE[i['name']] = i['number']
+        KOCOM_PLUG_SIZE = {}
+        dict_data = json_data['KOCOM_PLUG_SIZE']
         for i in dict_data:
-            KOCOM_PLUG_SIZE[i['name']] = i['number'] 
+            KOCOM_PLUG_SIZE[i['name']] = i['number']
         num = 0
         KOCOM_ROOM = {}
-        list_data = json_data['KOCOM_ROOM']                                                                           
+        list_data = json_data['KOCOM_ROOM']
         for i in list_data:
             if num < 10:
                 num_key = "0%d" % (num)
-            else:           
+            else:
                 num_key = "%d" % (num)
             KOCOM_ROOM[num_key] = i
             num += 1
         num = 0
         KOCOM_ROOM_THERMOSTAT = {}
-        list_data = json_data['KOCOM_ROOM_THERMOSTAT']                                                                           
+        list_data = json_data['KOCOM_ROOM_THERMOSTAT']
         for i in list_data:
             if num < 10:
                 num_key = "0%d" % (num)
             else:
                 num_key = "%d" % (num)
             KOCOM_ROOM_THERMOSTAT[num_key] = i
-            num += 1         
-####################### End Here by Zooil ########################### 
+            num += 1
+####################### End Here by Zooil ###########################
 ###############################################################################################################
 
 ###############################################################################################################
@@ -430,7 +430,7 @@ class Kocom(rs485):
             self.parse_message(_topic, _payload)
             return
         logger.info("Message: {} = {}".format(msg.topic, _payload))
-        
+
         if self.ha_registry != False and self.ha_registry == msg.topic and self.kocom_scan:
             self.kocom_scan = False
 
@@ -540,7 +540,7 @@ class Kocom(rs485):
         subscribe_list = []
         subscribe_list.append(('rs485/bridge/#', 0))
         publish_list = []
-        
+
         self.ha_registry = False
         self.kocom_scan = True
 
@@ -966,7 +966,7 @@ class Kocom(rs485):
                                                             sub_v['last'] = 'state'
                                                         self.set_serial(device, room, sub_d, sub_v['set'])
                                                     elif type(sub_v['last']) == float and now - sub_v['last'] > 1:
-                                                        sub_v['last'] = 'set' 
+                                                        sub_v['last'] = 'set'
                                                         sub_v['count'] += 1
                     except:
                         logger.debug('[Scan]Error')
@@ -1498,7 +1498,7 @@ if __name__ == '__main__':
 
     logger.addHandler(logFileHandler)
     #logger.addHandler(logStreamHandler)
- 
+
     logging.info('{} 시작'.format(SW_VERSION))
     logger.info('{} 시작'.format(SW_VERSION))
 
@@ -1536,4 +1536,3 @@ if __name__ == '__main__':
                     connection_flag = False
         if _grex_ventilator is not False and _grex_controller is not False:
             _grex = Grex(r, _grex_controller, _grex_ventilator)
-            
