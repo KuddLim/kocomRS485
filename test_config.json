@@ -1,0 +1,96 @@
+{
+    "RS485": {
+      "type": "Socket"
+    },
+    "Socket": {
+      "server": "192.168.1.155",
+      "port": 8899
+    },
+    "SocketDevice": {
+      "device": "kocom"
+    },
+    "Serial": {
+      "port1": "/dev/ttyUSB0"
+    },
+    "SerialDevice": {
+      "port1": "kocom"
+    },
+    "MQTT": {
+      "anonymous": false,
+      "server": "192.168.1.212",
+      "username": "mqtt",
+      "password": "your_password_comes_here"
+    },
+    "Wallpad": {
+      "light": true,
+      "plug": false,
+      "thermostat": true,
+      "fan": true,
+      "gas": false,
+      "elevator": true
+    },
+    "Advanced": {
+      "INIT_TEMP": 22,
+      "SCAN_INTERVAL": 300,
+      "SCANNING_INTERVAL": 0.8,
+      "DEFAULT_SPEED": "medium",
+      "LOGLEVEL": "info"
+    },
+    "KOCOM_LIGHT_SIZE": [
+      {
+        "name": "livingroom",
+        "number": 4
+      },
+      {
+        "name": "bedroom",
+        "number": 0
+      },
+      {
+        "name": "room1",
+        "number": 0
+      },
+      {
+        "name": "room2",
+        "number": 0
+      },
+      {
+        "name": "kitchen",
+        "number": 0
+      }
+    ],
+    "KOCOM_PLUG_SIZE": [
+      {
+        "name": "livingroom",
+        "number": 0
+      },
+      {
+        "name": "bedroom",
+        "number": 0
+      },
+      {
+        "name": "room1",
+        "number": 0
+      },
+      {
+        "name": "room2",
+        "number": 0
+      },
+      {
+        "name": "kitchen",
+        "number": 0
+      }
+    ],
+    "KOCOM_ROOM": [
+      "livingroom",
+      "bedroom",
+      "room1",
+      "room2",
+      "kitchen"
+    ],
+    "KOCOM_ROOM_THERMOSTAT": [
+      "livingroom",
+      "bedroom",
+      "room1",
+      "room2"
+    ]
+  }
