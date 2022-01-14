@@ -4,7 +4,7 @@ FROM python:3
 ENV LANG C.UTF-8
 
 # Copy data for add-on
-COPY run.sh makeconf.sh rs485.py /
+COPY run.sh makeconf.sh main.py /
 
 # Install requirements for add-on
 RUN apt-get update && apt-get -y install jq
